@@ -492,25 +492,6 @@ meetsAntiLemma1 {p} {l} m =
 
 
 
-meetsAntiLemma2  :   {p : 2SP} → {l : 2SPLine} →  meets p l  → meets p (anti2SPLine l)
-meetsAntiLemma2 {p} {l} m =
-  ( (P (2SPtoPoint  p)) ∙ (P (2SPLinetoPoint (anti2SPLine l))) )
-                ≡⟨ cong (λ x → (( (P (2SPtoPoint  p)) ∙ x ))) (antiLemmaLine l) ⟩
-  ( (P (2SPtoPoint  p)) ∙ ((- 1ℚ) ⋆ (P (2SPLinetoPoint l))) )
-                ≡⟨ ∙-sym (P (2SPtoPoint  p)) ((- 1ℚ) ⋆ (P (2SPLinetoPoint l)))  ⟩
-  ( ((- 1ℚ) ⋆ (P (2SPLinetoPoint l)))  ∙ (P (2SPtoPoint  p)) )
-                ≡⟨ ∙Linear1 ((P (2SPLinetoPoint l))) ((P (2SPtoPoint  p))) ((- 1ℚ)) ⟩
-  (- 1ℚ) *ℚ ( ( (P (2SPLinetoPoint l)))  ∙ (P (2SPtoPoint  p)) )
-                ≡⟨  (cong (λ x → (- 1ℚ) *ℚ x) (∙-sym (P (2SPLinetoPoint l)) (P (2SPtoPoint  p)))) ⟩
-  (- 1ℚ) *ℚ (P (2SPtoPoint  p)) ∙ ( ( (P (2SPLinetoPoint l))) )
-                ≡⟨ cong (λ x → (- 1ℚ) *ℚ x) m ⟩                 
-  (- 1ℚ) *ℚ 0ℚ
-                ≡⟨ refl ⟩
-  0ℚ
-  ∎
-  where open ≡-Reasoning
-
-
 -- ∙-symmetry
 postulate
   *ℚ-comm : (a b : ℚ) → a *ℚ b ≡ b *ℚ a
@@ -528,6 +509,25 @@ postulate
   where open ≡-Reasoning
 
 
+
+
+meetsAntiLemma2  :   {p : 2SP} → {l : 2SPLine} →  meets p l  → meets p (anti2SPLine l)
+meetsAntiLemma2 {p} {l} m =
+  ( (P (2SPtoPoint  p)) ∙ (P (2SPLinetoPoint (anti2SPLine l))) )
+                ≡⟨ cong (λ x → (( (P (2SPtoPoint  p)) ∙ x ))) (antiLemmaLine l) ⟩
+  ( (P (2SPtoPoint  p)) ∙ ((- 1ℚ) ⋆ (P (2SPLinetoPoint l))) )
+                ≡⟨ ∙-sym (P (2SPtoPoint  p)) ((- 1ℚ) ⋆ (P (2SPLinetoPoint l)))  ⟩
+  ( ((- 1ℚ) ⋆ (P (2SPLinetoPoint l)))  ∙ (P (2SPtoPoint  p)) )
+                ≡⟨ ∙Linear1 ((P (2SPLinetoPoint l))) ((P (2SPtoPoint  p))) ((- 1ℚ)) ⟩
+  (- 1ℚ) *ℚ ( ( (P (2SPLinetoPoint l)))  ∙ (P (2SPtoPoint  p)) )
+                ≡⟨  (cong (λ x → (- 1ℚ) *ℚ x) (∙-sym (P (2SPLinetoPoint l)) (P (2SPtoPoint  p)))) ⟩
+  (- 1ℚ) *ℚ (P (2SPtoPoint  p)) ∙ ( ( (P (2SPLinetoPoint l))) )
+                ≡⟨ cong (λ x → (- 1ℚ) *ℚ x) m ⟩                 
+  (- 1ℚ) *ℚ 0ℚ
+                ≡⟨ refl ⟩
+  0ℚ
+  ∎
+  where open ≡-Reasoning
 
 
 
